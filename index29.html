@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESTACIÓN 19 | Hamburguesería & Fast Food Miraflores</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  <!-- Google Fonts: Bebas Neue (Títulos) y Montserrat (Texto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-primary: #D32F2F;   /* Rojo intenso */
+      --color-secondary: #FF9800; /* Naranja vibrante */
+      --color-accent: #FFC107;    /* Amarillo cálido */
+      --color-dark: #1A1A1A;      /* Fondo oscuro / contraste */
+      --color-light: #FFF8F0;     /* Fondo claro cálido */
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--color-light);
+      color: #212529;
+    }
+
+    /* Tipografía para títulos */
+    h1, h2, h3, h4, .font-title, .card-title, .navbar-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 1.5px;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: var(--color-dark) !important;
+      border-bottom: 3px solid var(--color-primary);
+    }
+    .navbar-brand {
+      font-size: 2rem;
+      color: var(--color-accent) !important;
+    }
+    .navbar-brand span {
+      color: var(--color-primary);
+    }
+    .nav-link {
+      color: #FFFFFF !important;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+      color: var(--color-accent) !important;
+    }
+
+    /* Hero / Portada Principal */
+    .hero-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                  url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1600&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 100px 0 80px 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    }
+    .hero-title {
+      font-size: 4rem;
+      color: var(--color-accent);
+    }
+    .btn-hero {
+      background-color: var(--color-primary);
+      color: white;
+      font-weight: 700;
+      padding: 12px 30px;
+      border: none;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-hero:hover {
+      background-color: var(--color-secondary);
+      color: var(--color-dark);
+      transform: translateY(-3px);
+    }
+
+    /* Encabezados de sección */
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .section-title {
+      font-size: 3rem;
+      color: var(--color-primary);
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60%;
+      height: 4px;
+      background-color: var(--color-accent);
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Tarjetas de Productos */
+    .card-product {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: #FFFFFF;
+      height: 100%;
+    }
+    .card-product:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(211, 47, 47, 0.2);
+    }
+    .card-product .card-img-container {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+    .card-product img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .card-product:hover img {
+      transform: scale(1.08);
+    }
+    .price-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background-color: var(--color-primary);
+      color: white;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 1.1rem;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+    }
+    .card-product .card-title {
+      font-size: 2rem;
+      color: var(--color-dark);
+      margin-bottom: 10px;
+    }
+    .card-product .card-text {
+      color: #555555;
+      font-size: 0.95rem;
+    }
+    .btn-card {
+      background-color: var(--color-secondary);
+      color: var(--color-dark);
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      padding: 10px;
+      transition: background-color 0.3s ease;
+    }
+    .btn-card:hover {
+      background-color: var(--color-primary);
+      color: white;
+    }
+
+    /* Estilos Sección Preguntas Frecuentes (FAQ) */
+    .faq-section {
+      background-color: #FFFFFF;
+      padding: 70px 0;
+      border-top: 1px solid #FFE0B2;
+      border-bottom: 1px solid #FFE0B2;
+    }
+    .accordion-item {
+      border: 2px solid #FFE0B2;
+      border-radius: 12px !important;
+      margin-bottom: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+    .accordion-button {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--color-dark);
+      background-color: #FFFDF9;
+      padding: 18px 25px;
+    }
+    .accordion-button:not(.collapsed) {
+      color: var(--color-primary);
+      background-color: #FFF3E0;
+      box-shadow: none;
+    }
+
+    /* Información de Contacto / Ubicación */
+    .contact-section {
+      background-color: var(--color-dark);
+      color: white;
+      padding: 70px 0;
+    }
+    .info-box {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 25px;
+    }
+    .info-box i {
+      font-size: 2rem;
+      color: var(--color-accent);
+      margin-right: 20px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #111111;
+      color: #AAAAAA;
+      border-top: 2px solid var(--color-secondary);
+    }
+
+    /* Floating Cart Button */
+    .floating-cart {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      background-color: #25D366;
+      color: white;
+      font-weight: bold;
+      padding: 12px 20px;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.3s ease;
+    }
+    .floating-cart:hover {
+      transform: scale(1.05);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVEGACIÓN -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#inicio"><i class="bi bi-fire me-2"></i>ESTACIÓN <span>19</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#menu">Nuestro Menú</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">Preguntas Frecuentes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ubicacion">Ubicación & Contacto</a></li>
+          <li class="nav-item ms-lg-3">
+            <a class="btn btn-warning font-weight-bold" href="https://wa.me/51987654321?text=Hola%20Estaci%C3%B3n%2019,%20quisiera%20hacer%20un%20pedido" target="_blank" style="background-color: var(--color-accent); border:none; font-weight:700;">
+              <i class="bi bi-whatsapp me-1"></i> Pedir por WhatsApp
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PORTADA PRINCIPAL / HERO -->
+  <header id="inicio" class="hero-section text-center d-flex align-items-center">
+    <div class="container">
+      <h1 class="hero-title display-2 fw-bold text-uppercase">Sabor Real en Estación 19</h1>
+      <p class="lead fs-3 fw-semibold mb-4 text-warning">Hamburguesas, Salchipapas, Pollo a la Brasa y el mejor Fast Food de Miraflores</p>
+      <p class="fs-5 mb-5 max-w-700 mx-auto">Ingredientes frescos, porciones generosas y las cremas secretas que te van a enamorar.</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="#menu" class="btn btn-hero"><i class="bi bi-bag-check-fill me-2"></i>Ver Menú Completo</a>
+        <a href="#ubicacion" class="btn btn-hero" style="background-color: var(--color-secondary); color: var(--color-dark);"><i class="bi bi-geo-alt-fill me-2"></i>Dónde Estamos</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECCIÓN DE PRODUCTOS (TARJETAS EN CONTAINER Y ROW) -->
+  <section id="menu" class="py-5">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Nuestra Carta Especial</h2>
+        <p class="text-muted fs-5 mt-2">Haz clic en cada plato para ver detalles y agregar a tu pedido</p>
+      </div>
+
+      <div class="row g-4">
+
+        <!-- Tarjeta 1: Hamburguesas -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card card-product">
+            <div class="card-img-container">
+              <span class="price-badge">S/ 24.90</span>
+              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=600&auto=format&fit=crop" alt="Hamburguesa Artesanal">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title">Hamburguesa Clásica 19</h3>
+              <p class="card-text flex-grow-1">200g de carne 100% de res a la parrilla, queso cheddar derretido, tocino crocante, lechuga y tomate en pan brioche.</p>
+              <button class="btn btn-card mt-3 btn-ver-detalle" 
+                      data-titulo="Hamburguesa Clásica 19" 
+                      data-precio="24.90" 
+                      data-img="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=600&auto=format&fit=crop"
+                      data-desc="Carne 100% de res a la parrilla de carbón, queso cheddar fundido, cebolla caramelizada, tocino crocante, pepinillos y pan brioche artesanal.">
+                <i class="bi bi-eye-fill me-1"></i> Ver detalle
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2: Salchipapas -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card card-product">
+            <div class="card-img-container">
+              <span class="price-badge">S/ 21.00</span>
+              <img src="https://images.unsplash.com/photo-1585109649139-366815a0d713?q=80&w=600&auto=format&fit=crop" alt="Salchipapa Especial">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title">Salchipapa Estación</h3>
+              <p class="card-text flex-grow-1">Papas amarillas fritas crujientes, salchicha frankfurt de primera, huevo frito, queso derretido y todas tus cremas favoritas.</p>
+              <button class="btn btn-card mt-3 btn-ver-detalle" 
+                      data-titulo="Salchipapa Estación" 
+                      data-precio="21.00" 
+                      data-img="https://images.unsplash.com/photo-1585109649139-366815a0d713?q=80&w=600&auto=format&fit=crop"
+                      data-desc="Abundante porción de papas nativas amarillas, doble salchicha frankfurt en láminas, huevo a la inglesa y queso fundido por encima.">
+                <i class="bi bi-eye-fill me-1"></i> Ver detalle
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3: Pollo a la Brasa -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card card-product">
+            <div class="card-img-container">
+              <span class="price-badge">S/ 29.90</span>
+              <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?q=80&w=600&auto=format&fit=crop" alt="Pollo a la Brasa">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title">1/4 Pollo a la Brasa</h3>
+              <p class="card-text flex-grow-1">Jugoso pollo macerado con finas especias peruanas, servido con papas fritas doradas y ensalada fresca con aliño especial.</p>
+              <button class="btn btn-card mt-3 btn-ver-detalle" 
+                      data-titulo="1/4 Pollo a la Brasa" 
+                      data-precio="29.90" 
+                      data-img="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?q=80&w=600&auto=format&fit=crop"
+                      data-desc="Cuarto de pollo tierno horneado al carbón con receta tradicional, servido con papas onduladas crocantes y ensalada fresca.">
+                <i class="bi bi-eye-fill me-1"></i> Ver detalle
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 4: Enchiladas -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card card-product">
+            <div class="card-img-container">
+              <span class="price-badge">S/ 26.50</span>
+              <img src="https://images.unsplash.com/photo-1534352956036-cd21c88a43d1?q=80&w=600&auto=format&fit=crop" alt="Enchiladas">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title">Enchiladas Tex-Mex</h3>
+              <p class="card-text flex-grow-1">Tortillas de maíz rellenas de pollo deshilachado, bañadas en salsa de ajíes secos, gratinadas con queso y crema agria.</p>
+              <button class="btn btn-card mt-3 btn-ver-detalle" 
+                      data-titulo="Enchiladas Tex-Mex" 
+                      data-precio="26.50" 
+                      data-img="https://images.unsplash.com/photo-1534352956036-cd21c88a43d1?q=80&w=600&auto=format&fit=crop"
+                      data-desc="3 tortillas suaves de maíz con relleno de pechuga desmenuzada, salsa roja artesanal estilo mexicano y queso mozzarella gratinado.">
+                <i class="bi bi-eye-fill me-1"></i> Ver detalle
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 5: Pollo Broaster -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card card-product">
+            <div class="card-img-container">
+              <span class="price-badge">S/ 22.00</span>
+              <img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=600&auto=format&fit=crop" alt="Broaster">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title">Broaster Crujiente</h3>
+              <p class="card-text flex-grow-1">Piezas de pollo súper crocantes con empanizado secreto estilo cajún, acompañadas de papas fritas y ensalada coleslaw.</p>
+              <button class="btn btn-card mt-3 btn-ver-detalle" 
+                      data-titulo="Broaster Crujiente" 
+                      data-precio="22.00" 
+                      data-img="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=600&auto=format&fit=crop"
+                      data-desc="Dos piezas seleccionadas de pollo con empanizado crujiente y dorado, papas fritas bastón y aliño especial.">
+                <i class="bi bi-eye-fill me-1"></i> Ver detalle
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 6: Shawarma -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card card-product">
+            <div class="card-img-container">
+              <span class="price-badge">S/ 20.00</span>
+              <img src="https://images.unsplash.com/photo-1561651823-34feb02250e4?q=80&w=600&auto=format&fit=crop" alt="Shawarma">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title">Shawarma Mixto</h3>
+              <p class="card-text flex-grow-1">Pan pita enrollado con láminas de carne y pollo sazonadas, lechuga, tomate, cebolla y la infaltable salsa de ajo.</p>
+              <button class="btn btn-card mt-3 btn-ver-detalle" 
+                      data-titulo="Shawarma Mixto" 
+                      data-precio="20.00" 
+                      data-img="https://images.unsplash.com/photo-1561651823-34feb02250e4?q=80&w=600&auto=format&fit=crop"
+                      data-desc="Enrollado en pan pita con tiras marinaras de pollo y lomo de res, hummus artesanal, salsa de ajo y vegetales frescos.">
+                <i class="bi bi-eye-fill me-1"></i> Ver detalle
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 7: Choripán -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card card-product">
+            <div class="card-img-container">
+              <span class="price-badge">S/ 18.50</span>
+              <img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?q=80&w=600&auto=format&fit=crop" alt="Choripan">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title">Choripán Parrillero</h3>
+              <p class="card-text flex-grow-1">Chorizo de fina chimichurri artesanal casero, servido en baguette crocante a la parrilla de carbón.</p>
+              <button class="btn btn-card mt-3 btn-ver-detalle" 
+                      data-titulo="Choripán Parrillero" 
+                      data-precio="18.50" 
+                      data-img="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?q=80&w=600&auto=format&fit=crop"
+                      data-desc="Chorizo fino ahumado abierto en mariposa a la parrilla, con pan crujiente y generosa salsa chimichurri argentina.">
+                <i class="bi bi-eye-fill me-1"></i> Ver detalle
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 8: Tequeños/Piqueos -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card card-product">
+            <div class="card-img-container">
+              <span class="price-badge">S/ 19.00</span>
+              <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?q=80&w=600&auto=format&fit=crop" alt="Tequeños">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title">Tequeños de Queso (10 ud)</h3>
+              <p class="card-text flex-grow-1">Crocantes bastones de masa wonton rellenos de queso mantecoso, acompañados de abundante guacamole de la casa.</p>
+              <button class="btn btn-card mt-3 btn-ver-detalle" 
+                      data-titulo="Tequeños de Queso" 
+                      data-precio="19.00" 
+                      data-img="https://images.unsplash.com/photo-1541529086526-db283c563270?q=80&w=600&auto=format&fit=crop"
+                      data-desc="10 crujientes tequeños fritos en su punto exacto con relleno de queso derretido y pote de guacamole recién preparado.">
+                <i class="bi bi-eye-fill me-1"></i> Ver detalle
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE PREGUNTAS FRECUENTES (FAQ) -->
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Preguntas Frecuentes</h2>
+        <p class="text-muted fs-5 mt-2">Resolvemos tus dudas para que solo te preocupes por disfrutar</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="accordion" id="accordionFAQ">
+
+            <!-- Pregunta 1 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <i class="bi bi-clock-history me-2 text-danger"></i> ¿Cuáles son sus horarios de atención?
+                </button>
+              </h3>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                  Atendemos de <strong>Lunes a Domingo de 12:00 PM a 11:30 PM</strong> en nuestro local de Miraflores. Los viernes y sábados extendemos pedidos nocturnos por WhatsApp.
+                </div>
+              </div>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <i class="bi bi-truck me-2 text-danger"></i> ¿Realizan envíos a domicilio (Delivery)?
+                </button>
+              </h3>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                  ¡Sí! Contamos con <strong>delivery propio directo</strong> para todo Miraflores, San Isidro, Surquillo y Barranco. Haz clic en pedir por WhatsApp para coordinar.
+                </div>
+              </div>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  <i class="bi bi-credit-card me-2 text-danger"></i> ¿Qué métodos de pago aceptan?
+                </button>
+              </h3>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                  Aceptamos <strong>Yape, Plin, Efectivo</strong> y todas las tarjetas de crédito o débito (Visa, Mastercard, Amex) tanto en local como contra entrega.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UBICACIÓN Y CONTACTO -->
+  <section id="ubicacion" class="contact-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <h2 class="section-title text-start text-warning mb-4">¡Visítanos en Miraflores!</h2>
+          <p class="fs-5 mb-4 text-light">Estamos ubicados en el corazón gastronómico de Miraflores. Ven y vive la experiencia Estación 19.</p>
+
+          <div class="info-box">
+            <i class="bi bi-geo-alt-fill"></i>
+            <div>
+              <h4 class="m-0 text-warning">Dirección:</h4>
+              <p class="m-0 fs-5">Av. José Larco 819, Miraflores, Lima - Perú</p>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <i class="bi bi-telephone-fill"></i>
+            <div>
+              <h4 class="m-0 text-warning">Teléfonos & WhatsApp:</h4>
+              <p class="m-0 fs-5">+51 987 654 321 / (01) 445-8919</p>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <i class="bi bi-clock-fill"></i>
+            <div>
+              <h4 class="m-0 text-warning">Horario de Atención:</h4>
+              <p class="m-0 fs-5">Lunes a Domingo: 12:00 PM - 11:30 PM</p>
+            </div>
+          </div>
+
+          <a href="https://maps.google.com/?q=Av.+Jose+Larco+819+Miraflores" target="_blank" class="btn btn-warning fw-bold text-dark px-4 py-2 mt-2">
+            <i class="bi bi-map-fill me-2"></i> Abrir en Google Maps
+          </a>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="ratio ratio-4x3 rounded-3 overflow-hidden shadow-lg border border-warning">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.7223011406856!2d-77.03157132418042!3d-12.127718943403212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8194f4c9bfd%3A0x6b2e35a909436bc1!2sAv.%20Jos%C3%A9%20Larco%20819%2C%20Miraflores%2015074!5e0!3m2!1ses!2spe!4v1700000000000!5m2!1ses!2spe" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL DINÁMICO DE DETALLE DE PRODUCTO -->
+  <div class="modal fade" id="modalDinamico" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h4 class="modal-title font-title m-0" id="modalTitulo">Nombre del Plato</h4>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-dark">
+          <img id="modalImagen" src="" alt="Plato" class="img-fluid rounded mb-3 w-100" style="height: 200px; object-fit: cover;">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="fs-4 fw-bold text-danger" id="modalPrecio">S/ 0.00</span>
+            <span class="badge bg-warning text-dark">Disponible</span>
+          </div>
+          <p id="modalDescripcion" class="text-muted"></p>
+          <hr>
+          <div class="mb-3">
+            <label class="form-label fw-bold"><i class="bi bi-droplet-fill text-danger me-1"></i> Selecciona tus cremas:</label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="c1" checked>
+              <label class="form-check-label" for="c1">Mayonesa Casera</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="c2" checked>
+              <label class="form-check-label" for="c2">Salsa de Ajo Especial</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="c3">
+              <label class="form-check-label" for="c3">Ají Uruchurtu (Picante)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="c4">
+              <label class="form-check-label" for="c4">Ketchup / Mostaza</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-warning text-dark fw-bold" id="btnAgregarPedido">
+            <i class="bi bi-cart-plus-fill me-1"></i> Agregar al Pedido
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTÓN FLOTANTE PARA WHATSAPP / VER CARRITO -->
+  <a href="#" class="floating-cart" id="btnFlotante">
+    <i class="bi bi-cart-fill fs-4"></i>
+    <span>Mi Pedido: <strong id="totalMonto">S/ 0.00</strong></span>
+  </a>
+
+  <!-- FOOTER -->
+  <footer class="py-4 text-center">
+    <div class="container">
+      <p class="m-0 mb-2">&copy; 2026 <strong>ESTACIÓN 19</strong> - Todos los derechos reservados. Miraflores, Lima.</p>
+      <div>
+        <a href="https://facebook.com" target="_blank" class="text-warning me-3 fs-4"><i class="bi bi-facebook"></i></a>
+        <a href="https://instagram.com" target="_blank" class="text-warning me-3 fs-4"><i class="bi bi-instagram"></i></a>
+        <a href="https://wa.me/51987654321" target="_blank" class="text-warning fs-4"><i class="bi bi-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JavaScript Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- LÓGICA JAVASCRIPT PARA BOTONES -->
+  <script>
+    let totalAcumulado = 0;
+    let listaPedidos = [];
+    let platoActual = null;
+
+    // Inicializar el modal de Bootstrap
+    const modalElement = document.getElementById('modalDinamico');
+    const bsModal = new bootstrap.Modal(modalElement);
+
+    // Asignar evento a todos los botones "Ver detalle"
+    document.querySelectorAll('.btn-ver-detalle').forEach(button => {
+      button.addEventListener('click', function() {
+        const titulo = this.getAttribute('data-titulo');
+        const precio = parseFloat(this.getAttribute('data-precio'));
+        const img = this.getAttribute('data-img');
+        const desc = this.getAttribute('data-desc');
+
+        platoActual = { titulo, precio };
+
+        document.getElementById('modalTitulo').textContent = titulo;
+        document.getElementById('modalPrecio').textContent = 'S/ ' + precio.toFixed(2);
+        document.getElementById('modalImagen').src = img;
+        document.getElementById('modalDescripcion').textContent = desc;
+
+        bsModal.show();
+      });
+    });
+
+    // Acción para agregar producto al pedido
+    document.getElementById('btnAgregarPedido').addEventListener('click', function() {
+      if (platoActual) {
+        totalAcumulado += platoActual.precio;
+        listaPedidos.push(platoActual.titulo);
+        
+        document.getElementById('totalMonto').textContent = 'S/ ' + totalAcumulado.toFixed(2);
+        
+        bsModal.hide();
+        alert('¡' + platoActual.titulo + ' agregado a tu pedido!');
+      }
+    });
+
+    // Evento para el botón flotante de WhatsApp
+    document.getElementById('btnFlotante').addEventListener('click', function(e) {
+      e.preventDefault();
+      if (listaPedidos.length === 0) {
+        alert('Aún no has agregado platos. Selecciona tus favoritos de la carta.');
+        window.location.href = '#menu';
+      } else {
+        const mensaje = encodeURIComponent(
+          '¡Hola Estación 19! Quisiera realizar este pedido por favor:\n- ' + 
+          listaPedidos.join('\n- ') + 
+          '\n\nTotal estimado: S/ ' + totalAcumulado.toFixed(2)
+        );
+        window.open('https://wa.me/51987654321?text=' + mensaje, '_blank');
+      }
+    });
+  </script>
+</body>
+</html>
